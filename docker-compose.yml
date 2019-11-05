@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  mariadb:
+    image: mariadb/server
+    hostname: mariadb
+    container_name: mariadb-server
+    networks:
+      - mpbd
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=comportamento_digital
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+    restart: on-failure
+    volumes:
+      - dabatase:/var/lib/mysql
+
+networks:
+  mpbd:
+    driver: bridge
+    name: mpbd
+
+volumes:
+  dabatase: ~
